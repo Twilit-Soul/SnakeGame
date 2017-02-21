@@ -1,0 +1,198 @@
+    <?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Drawing Page Thing</title>
+      <meta name="viewport" content="width=device-width">
+      <style type = "text/css">
+        #canvas {
+            border: 5px solid #999999; 
+            border-collapse: collapse;
+        }
+        td.pixel {
+            width: 10px;
+            height: 10px;
+        }
+        th.key { 
+            font-family: arial, helvetica, sans-serif;
+            font-size: 12px; 
+            border-bottom: 1px solid #999999;
+            width:100%;
+            height:37px;
+            overflow:hidden;
+        }
+        .centered {
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+        }
+        tr#controlRow td {
+            width: 200px;
+        }
+        select#bodyColors {
+            background-color:purple;
+        }
+        select#headColors {
+            background-color:red;
+        }
+        select#foodColors {
+            background-color:green;
+        }
+        span#drawColors {
+            float:left;
+        }
+        span#snakeColors {
+            float:right;
+        }
+        div#controlRow {
+            text-align:center;
+        }
+        select {
+            font-weight:bold;
+            direction:rtl;
+            color:white;
+            width:60px;
+        }
+        select#fillColors {
+            color:black;
+        }
+        select#snakeModes {
+            color:black;
+            width:auto;
+        }
+        option#white {
+            background-color:white;
+            color:black;
+        }
+        option#yellow {
+            background-color:yellow;
+            color:black;
+        }
+        option#red {
+            background-color:red;
+            color:white;
+        }
+        option#blue {
+            background-color:blue;
+            color:white;
+        }
+        option#green {
+            background-color:green;
+            color:white;
+        }
+        option#black {
+            background-color:black;
+            color:white;
+        }
+        option#purple {
+            background-color:purple;
+            color:white;
+        }
+        option#pink {
+            background-color:pink;
+            color:black;
+        }
+        #drawButton {
+            display:none;
+        }
+        .purple {
+             background-color:purple;
+        }
+        .yellow {
+             background-color:yellow;
+        }
+        .red {
+             background-color:red;
+        }
+        .black {
+             background-color:black;
+        }
+        .green {
+             background-color:green;
+        }
+        .blue {
+             background-color:blue;
+        }
+        .pink {
+             background-color:pink;
+        }
+      </style>
+      <script src="jquery.min.js">
+      </script>
+      <script src="snakeDraw.js">
+      </script>
+   </head>
+   <body onload = "createCanvas()" onkeydown="controlSnake('somePrefix?',event)">
+        <div id="drawSnake" class='centered'>
+            <table id = "canvas" class = "canvas">
+    	    	<tbody id="tablebody">
+        			  <tr id="topRowID">
+        				 <th id = "topText" class = "key">
+        					Hold <tt>ctrl</tt>
+        					to draw blue. Hold <tt>shift</tt> to draw red. <tt>Both</tt> for purple.<br /><tt>Alt</tt> erases.
+        				 </th>
+        			  </tr>
+        		</tbody>
+            </table>
+            <br />
+                <div id="controlRow">
+                    <span id="drawColors">
+                    Fill with:
+                    <select onchange="colorFill(this.value)" id='fillColors'>
+                        <option id="white" value="white"></option>
+                        <option id="purple" value="purple"></option>
+                        <option id="blue" value="blue"></option>
+                        <option id="red" value="red"></option>
+                    </select>
+                    </span>
+                    <span id="snakeColors">
+                    Snake Head:
+                    <select onchange="headColorChange(this.value)" id='headColors'>
+                        <option id="red" value="red"></option>
+                        <option id="blue" value="blue"></option>
+                        <option id="purple" value="purple"></option>
+                        <option id="green" value="green"></option>
+                        <option id="yellow" value="yellow"></option>
+                        <option id="black" value="black"></option>
+                        <option id="pink" value="pink"></option>
+                    </select>
+                    Snake Body:
+                    <select onchange="bodyColorChange(this.value)" id='bodyColors'>
+                        <option id="red" value="red"></option>
+                        <option id="blue" value="blue"></option>
+                        <option id="purple" value="purple"></option>
+                        <option id="green" value="green"></option>
+                        <option id="yellow" value="yellow"></option>
+                        <option id="black" value="black"></option>
+                        <option id="pink" value="pink"></option>
+                    </select>
+                    Food Color:
+                    <select onchange="foodColorChange(this.value)" id='foodColors'>
+                        <option id="red" value="red"></option>
+                        <option id="blue" value="blue"></option>
+                        <option id="purple" value="purple"></option>
+                        <option id="green" value="green"></option>
+                        <option id="yellow" value="yellow"></option>
+                        <option id="black" value="black"></option>
+                        <option id="pink" value="pink"></option>
+                    </select>
+                    </span>
+                    <br /><br />
+                    <span id="snakeButtons">
+                        <button id='snakeButton' onclick="startSnake()">Play Snake!</button>
+                        <button id='drawButton' onclick="stopSnake()">Draw stuff!</button>
+                    </span>
+                    <br />
+                    <br />
+                    <span id="snakeMode">
+                        Snake Mode: <select onchange="snakeMode(this.value)" id="snakeModes">
+                            <option id="regSnake" value="regSnake">Regular Snake</option>
+                            <option id="infinitySnake" value="infinitySnake">Infinity Snake</option>
+                        </select>
+                    </span>
+                </div>
+        </div>
+   </body>
+</html>
